@@ -30,6 +30,7 @@ model.fit(data)
 imputed_data = model.predict(data)
 
 # Save or further process `imputed_data` as needed
+```
 
 Requirements
 DeepIMB requires the following libraries:
