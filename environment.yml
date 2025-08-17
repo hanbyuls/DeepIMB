@@ -12,3 +12,4 @@ dependencies:
   - pip
   - pip:
       - tensorflow==2.15.0
+
