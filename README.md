@@ -16,7 +16,23 @@ This project uses Conda to manage its environment.
 
 ## 2. Data Structure
 
-The model expects input data to be placed in a `data/` directory within the project root. The structure should be as follows:
+The model expects input data to be placed in a `data/` directory. The script is designed to work with four specific CSV files, where the format is as follows:
+
+-   **OTU Tables (`..._zi_otu_mb.csv`, `..._comp_otu.csv`)**
+    -   **Rows**: Samples (e.g., patients, experimental subjects)
+    -   **Columns**: Taxa (e.g., microbial species, OTUs)
+    -   **Values**: Abundance counts (in this project, on a log10 scale)
+
+-   **Metadata Table (`..._meta_data.csv`)**
+    -   **Rows**: Samples, which must correspond to the rows in the OTU tables.
+    -   **Columns**: Covariates or sample attributes (e.g., age, sex, disease status).
+
+-   **Distance Matrix (`..._D.csv`)**
+    -   **Rows**: Taxa, which must correspond to the columns in the OTU tables.
+    -   **Columns**: Taxa, same as the rows.
+    -   **Values**: The distance (e.g., phyloge
+
+The structure should be as follows:
 
 ```
 DeepIMB/
@@ -27,7 +43,7 @@ DeepIMB/
 │   └── Karlsson_t2d_D.csv
 ├── results/
 ├── environment.yml
-└── main.py         # Or your script's name
+└── main.py
 ```
 
 ## 3. Usage
@@ -47,4 +63,7 @@ python main.py --base_dir . --study Karlsson --condition t2d --gpu_id 0
 
 ## 4. Results
 
-All output files, including the final imputed data matrix, training logs, and hyperparameter tuning results, will be saved in the `results/` directory.
+All output files are automatically saved in the `results/` directory. This includes:
+-   `pred_DeepIMB.csv`: The final, imputed data matrix with original sample and taxa names.
+-   `hyperparameter_tuning_results.csv`: A summary of the best-performing model's parameters.
+-   `final_model_history.csv`: A log of the training and validation metrics for the final model.
