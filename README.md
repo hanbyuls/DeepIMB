@@ -1,56 +1,50 @@
 # DeepIMB
 
-DeepIMB is a Python package designed for the imputation of missing microbiome data using deep learning techniques. It leverages TensorFlow to build and train a neural network model that can accurately predict missing values in microbiome datasets.
+A reproducible implementation of the DeepIMB (Deep-learning Imputation for Microbiome) model. This repository provides the code and environment needed to replicate the results from our paper.
 
-## Installation
+## 1. Installation
 
-To install DeepIMB, run the following command in your terminal:
+This project uses Conda to manage its environment.
 
-pip install DeepIMB
+1.  **Prerequisites:** You must have Conda (Miniconda or Anaconda) installed.
+2.  **Create Environment:** From the root directory of this project, create and activate the Conda environment using the provided file:
 
+    ```bash
+    conda env create -f environment.yml
+    conda activate deepimb
+    ```
 
-## Usage
+## 2. Data Structure
 
-Here's a quick example to get you started with DeepIMB:
+The model expects input data to be placed in a `data/` directory within the project root. The structure should be as follows:
 
-```python
-from deepimb.IMBNet import MultiNet
-import pandas as pd
-
-# Load your data
-data = pd.read_csv('path/to/your/data.csv', index_col=0)
-
-# Initialize the deepIMB model
-model = deepIMB()
-
-# Fit the model to your data
-model.fit(data)
-
-# Predict (impute) missing values
-imputed_data = model.predict(data)
-
-# Save or further process `imputed_data` as needed
+```
+DeepIMB/
+├── data/
+│   ├── Karlsson_t2d_k_5_comp_otu.csv
+│   ├── Karlsson_t2d_k_5_zi_otu_mb.csv
+│   ├── Karlsson_meta_data_t2d.csv
+│   └── Karlsson_t2d_D.csv
+├── results/
+├── environment.yml
+└── main.py         # Or your script's name
 ```
 
-Requirements
-DeepIMB requires the following libraries:
+## 3. Usage
 
-TensorFlow
-Pandas
-NumPy
-Scikit-learn
-Matplotlib
-These dependencies will be automatically installed when you install DeepIMB using pip.
+The main script can be run from the command line. Key parameters like the data directory, study name, and GPU can be configured via arguments.
 
-Features
-Easy-to-use interface for imputing missing microbiome data.
-Customizable neural network model to fit various dataset characteristics.
-Support for different types of microbiome data.
-Contributing
-We welcome contributions to DeepIMB! If you have suggestions or improvements, please open an issue or submit a pull request on GitHub.
+**Example Command:**
 
-License
-DeepIMB is released under the MIT License. See the LICENSE file for more details.
+```bash
+# Ensure the 'deepimb' environment is active
+python main.py --base_dir . --study Karlsson --condition t2d --gpu_id 0
+```
+-   `--base_dir`: Path to the project's root directory (containing `data/` and `results/`).
+-   `--study`: The name of the study to process (e.g., "Karlsson").
+-   `--condition`: The study condition (e.g., "t2d").
+-   `--gpu_id`: The GPU to use for training (set to `""` to force CPU).
 
-Contact
-For questions or support, please contact byul1891@gmail.com.
+## 4. Results
+
+All output files, including the final imputed data matrix, training logs, and hyperparameter tuning results, will be saved in the `results/` directory.

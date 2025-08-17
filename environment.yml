@@ -1,0 +1,14 @@
+name: deepimb
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - numpy=1.26.4
+  - pandas=2.2.2
+  - scipy=1.11.4
+  - tqdm=4.66.4
+  - scikit-learn=1.4.2
+  - pip
+  - pip:
+      - tensorflow==2.15.0
