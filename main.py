@@ -522,9 +522,9 @@ def main():
     # --- Step 3: Hyperparameter Sweep ---
     # Define the grid of hyperparameters to search
     param_grid = {
-        'learning_rates': [1e-4],
+        'learning_rates': [1e-5],
         'dropout_rates': [0.25],
-        'batch_sizes': [32],
+        'batch_sizes': [64],
         'num_layers_list': [2],
         'loss_functions': ['wMSE']
     }
