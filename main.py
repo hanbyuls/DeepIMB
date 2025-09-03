@@ -522,10 +522,10 @@ def main():
     # --- Step 3: Hyperparameter Sweep ---
     # Define the grid of hyperparameters to search
     param_grid = {
-        'learning_rates': [1e-5],
-        'dropout_rates': [0.25],
-        'batch_sizes': [64],
-        'num_layers_list': [2],
+        'learning_rates': [0.1, 0.01, 0.001, 1e-4, 1e-5],
+        'dropout_rates': [0.1, 0.2, 0.3, 0.4, 0.5],
+        'batch_sizes': [16,32,64,128],
+        'num_layers_list': [1,2,3,4],
         'loss_functions': ['wMSE']
     }
     configs = list(product(*param_grid.values()))
